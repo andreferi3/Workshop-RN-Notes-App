@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 
-export default class Wrapper extends Component {
-    render() {
-        return (
-            <View style={style.container}>
-                {this.props.children}
-            </View>
-        )
-    }
+// components
+import Header from './Header'
+import { Content } from 'native-base'
+import GlobalStyles from '../styles/GlobalStyles'
+
+const Wrapper = ({
+    title,
+    isScrolled,
+    children
+}) => {
+    const Wrapper = isScrolled ? Content : View
+    return (
+        <>
+            <Header {...{ title }} />
+            <Wrapper
+                style={[GlobalStyles.container, GlobalStyles.flexFill]}>
+                {children}
+            </Wrapper>
+        </>
+    )
 }
 
-const style = StyleSheet.create({
-    container: {
-        padding: 20,
-        flex: 1
-    }
-})
+export default Wrapper

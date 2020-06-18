@@ -23,7 +23,7 @@ export default class Settings extends Component {
     }
 
     componentWillUnmount() {
-        console.warn('Leave setting screen')
+
     }
     
 }
