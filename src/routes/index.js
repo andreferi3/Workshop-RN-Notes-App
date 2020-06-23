@@ -2,18 +2,20 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
 // Screen
-import Profile from '../screen/Profile';
+import Home from '../screen/Home';
 import Settings from '../screen/Settings';
 import SignIn from "../screen/SignIn";
 import AuthLoading from "../screen/AuthLoading";
 
 const User = createStackNavigator({
-    Profile: {
-        screen: Profile
+    Home: {
+        screen: Home
     },
     Setting: {
         screen: Settings
     }
+}, {
+    headerMode: 'none'
 })
 
 const Auth = createStackNavigator({

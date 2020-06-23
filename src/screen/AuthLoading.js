@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { Text, View, ActivityIndicator, AsyncStorage } from 'react-native'
+import React, { Component } from 'react';
+import { Text, View, ActivityIndicator } from 'react-native';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class AuthLoading extends Component {
     async componentDidMount() {

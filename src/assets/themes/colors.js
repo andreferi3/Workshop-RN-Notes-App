@@ -1,0 +1,1 @@
+export const colorList = ['#2FC2DF', '#C0EB6A', '#FAD06C', '#FF92A9', '#fff78f', '#58b368', '#67eaca', '#f79c1d', '#ff0b55', '#7f4782'];
