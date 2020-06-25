@@ -1,47 +1,40 @@
 import React, { Component } from "react";
-import { Text, StyleSheet } from 'react-native';
+import { Dimensions, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import appStore from './public/redux/store';
+
+import SplashScreen from 'react-native-splash-screen';
+import EStyleSheet from "react-native-extended-stylesheet";
 
 // Routes
-import Root from './routes'
+import Root from './routes';
+import NavigationServices from "./routes/NavigationServices";
+
+// Build Rem Units
+const { width } = Dimensions.get('screen');
+EStyleSheet.build({
+  $rem: width / 380,
+  $success: '#33c652'
+})
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      time: 0,
-      data: new Array(20).fill('')
-    }
-  }
-
   componentDidMount() {
-
+    SplashScreen.hide();
   }
-
+  
   render() {
+    Text.defaultProps = {
+      ...(Text.defaultProps || {}),
+      allowFontScaling: false
+    }
     return (
-      <Root />
+      <Provider store={appStore}>
+        <Root ref={navigationRef => {
+          NavigationServices.setTopLevelNavigator(navigationRef)
+        }} />
+      </Provider>
     )
   }
 }
 
-const style = StyleSheet.create({
-  headerText: {
-    fontSize: 24,
-    marginTop: 10
-  },
-  listItem: {
-    paddingVertical: 15
-  },
-  imageProfile: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    resizeMode: 'contain'
-  },
-  row: {
-    flexDirection: 'row', 
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  }
-})
+

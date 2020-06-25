@@ -1,19 +1,30 @@
-import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
-export default class Wrapper extends Component {
-    render() {
-        return (
-            <View style={style.container}>
-                {this.props.children}
-            </View>
-        )
-    }
+// components
+import Header from './Header';
+import { Content, Container } from 'native-base';
+import GlobalStyles from '../public/styles/GlobalStyles';
+
+const Wrapper = ({
+    isScrolled,
+    children,
+    rightIconPress,
+    title,
+    goBack
+}) => {
+    const Wrapper = isScrolled ? Content : View
+    return (
+        <Container>
+            <Header {...{ title, goBack, rightIconPress }} />
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <Wrapper
+                    style={[GlobalStyles.container, GlobalStyles.flexFill]}>
+                    {children}
+                </Wrapper>
+            </TouchableWithoutFeedback>
+        </Container>
+    )
 }
 
-const style = StyleSheet.create({
-    container: {
-        padding: 20,
-        flex: 1
-    }
-})
+export default Wrapper
