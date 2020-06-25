@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "emulator": "emulator -avd One_Plus_6_API_29",
-    "ios": "ENVFILE=.env.staging react-native run-ios --simulator='iPhone X'",
+    "ios": "ENVFILE=.env react-native run-ios --simulator='iPhone X'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "moment": "^2.26.0",
     "native-base": "^2.13.12",
+    "prop-types": "^15.7.2",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-config": "^1.2.1",
@@ -28,6 +29,7 @@
     "react-native-status-bar-height": "^2.5.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.3.9",
+    "react-navigation-drawer": "^2.5.0",
     "react-navigation-stack": "^2.7.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",

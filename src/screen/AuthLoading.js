@@ -12,7 +12,7 @@ export default class AuthLoading extends Component {
         })
 
         if(token) {
-            this.props.navigation.navigate('User')
+            this.props.navigation.navigate('DrawerNavigator')
         } else {
             this.props.navigation.navigate('SignIn')
         }

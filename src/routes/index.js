@@ -1,21 +1,22 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
-// Screen
-import Home from '../screen/Home';
-import Settings from '../screen/Settings';
+// Auth Screen
 import SignIn from "../screen/SignIn";
 import AuthLoading from "../screen/AuthLoading";
 
-const User = createStackNavigator({
-    Home: {
-        screen: Home
-    },
-    Setting: {
-        screen: Settings
-    }
+// Screen
+import Home from '../screen/Home';
+import NoteDetail from '../screen/NoteDetail';
+
+
+const Main = createStackNavigator({
+    Home,
+    NoteDetail
 }, {
-    headerMode: 'none'
+    headerMode: 'none',
+    initialRouteName: 'Home'
 })
 
 const Auth = createStackNavigator({
@@ -24,11 +25,23 @@ const Auth = createStackNavigator({
     }
 })
 
+const DrawerNavigator = createDrawerNavigator({
+    Home: {
+        screen: Main,
+        navigationOptions: {
+            drawerLabel: () => null
+        }
+    }
+},
+{
+    initialRouteName: 'Home'
+})
+
 const AppContainer = createAppContainer(
     createSwitchNavigator({
         AuthLoading: AuthLoading,
-        User,
-        Auth
+        Auth,
+        DrawerNavigator,
     }, {
         initialRouteName: 'AuthLoading'
     })

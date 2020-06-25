@@ -8,11 +8,13 @@ import EStyleSheet from "react-native-extended-stylesheet";
 
 // Routes
 import Root from './routes';
+import NavigationServices from "./routes/NavigationServices";
 
 // Build Rem Units
 const { width } = Dimensions.get('screen');
 EStyleSheet.build({
-  $rem: width / 380
+  $rem: width / 380,
+  $success: '#33c652'
 })
 
 export default class App extends Component {
@@ -27,7 +29,9 @@ export default class App extends Component {
     }
     return (
       <Provider store={appStore}>
-        <Root />
+        <Root ref={navigationRef => {
+          NavigationServices.setTopLevelNavigator(navigationRef)
+        }} />
       </Provider>
     )
   }
