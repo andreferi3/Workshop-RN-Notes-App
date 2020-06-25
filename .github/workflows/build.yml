@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - feature/*
+      - feature/workshop-3
 jobs:
   install-and-test:
     runs-on: ubuntu-latest
