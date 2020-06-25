@@ -3,12 +3,15 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const GlobalStyles = EStyleSheet.create({
     // utilities
+    bgWhite: {
+        backgroundColor: 'white'
+    },
     flexFill: {
         flex: 1
     },
     container: {
         paddingVertical: '19.5rem',
-        paddingHorizontal: '9.5rem'
+        paddingHorizontal: '11.5rem'
     },
     textCenter: {
         textAlign: 'center'
@@ -31,6 +34,30 @@ const GlobalStyles = EStyleSheet.create({
     },
     mt2: {
         marginTop: '14rem'
+    },
+    mt3: {
+        marginTop: '20.5rem'
+    },
+    mt4: {
+        marginTop: '27.5rem'
+    },
+    mt5: {
+        marginTop: '34rem'
+    },
+    mr1: {
+        marginRight: '4rem'
+    },
+    mr2: {
+        marginRight: '8rem'
+    },
+    mr3: {
+        marginRight: '11.5rem'
+    },
+    mr4: {
+        marginRight: '15.5rem'
+    },
+    mr5: {
+        marginRight: '19.5rem'
     },
     mb1: {
         marginBottom: '7rem'
@@ -80,6 +107,9 @@ const GlobalStyles = EStyleSheet.create({
     statusBarHeight: {
         paddingTop: getStatusBarHeight(true)
     },
+    hr: {
+
+    },
 
     // Typography
     fontSmall: {
@@ -96,9 +126,28 @@ const GlobalStyles = EStyleSheet.create({
         fontSize: '20rem'
     },
 
-    bolder: {
-        fontWeight: 'bold'
-    }
+    fw100: {
+        fontWeight: '100'
+    },
+    fw200: {
+        fontWeight: '200'
+    },
+    fw300: {
+        fontWeight: '300'
+    },
+    fw400: {
+        fontWeight: '400'
+    },
+    fw500: {
+        fontWeight: '500'
+    },
+    fw600: {
+        fontWeight: '600'
+    },
+    fw700: {
+        fontWeight: '700'
+    },
+
 })
 
 export default GlobalStyles

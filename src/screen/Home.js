@@ -1,38 +1,37 @@
 import React, { Component } from "react";
 import { FlatList, ActivityIndicator, View, TextInput } from 'react-native';
 
-// Components
+// * redux
+import { connect } from "react-redux";
+import { getNotes, getNoteById } from "../public/redux/actions/notes";
+
+// * Helper & Utilites
+import { getCategoryColor } from '../public/helpers/GlobalHelper';
+
+// * Components
 import NoteCard from "../components/NoteCard";
 import Wrapper from "../components/Wrapper";
 
-// Network & Utilites
-import Axios from "axios";
-
-// Styles
-import GlobalStyles from '../styles/GlobalStyles';
+// * Styles
+import GlobalStyles from '../public/styles/GlobalStyles';
 import EStyleSheet from "react-native-extended-stylesheet";
+import NavigationServices from "../routes/NavigationServices";
 
-let url = 'http://157.245.205.61';
-
-export default class App extends Component {
+class Home extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            data: {},
-            isLoading: false
-        }
+        this.textInputSearch = ''
     }
 
     componentDidMount() {
+        // this.props.navigation.addListener('willFocus', () => )
         this.fetchData()
     }
 
     render() {
-        // console.warn(this.state.data.data)
         return (
             <Wrapper title='Notes App'>
-                {this.state.isLoading ? this.renderLoader() : this.renderMainComponent()}
+                {this.props.notes.isLoading ? this.renderLoader() : this.renderMainComponent()}
             </Wrapper>
         )
     }
@@ -48,13 +47,13 @@ export default class App extends Component {
     renderMainComponent() {
         return (
             <>
-                <TextInput 
+                <TextInput
                     style={[style.searchInput, GlobalStyles.mb4]}
                     placeholder='Search Anything'
                     placeholderTextColor='#cccccc'
                     onChangeText={(val) => console.warn(val)} />
                 <FlatList
-                    data={this.state.data.data}
+                    data={!this.props.notes.isLoading && this.props.notes.data}
                     numColumns={2}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => (
@@ -63,23 +62,27 @@ export default class App extends Component {
                             dateCreated={item.notes_time}
                             noteTitle={item.notes_title}
                             categoryName={item.name_category}
-                            noteDescription={item.notes_note} />
+                            noteDescription={item.notes_note}
+                            backgroundColor={getCategoryColor(item.category_id)}
+                            onPress={() => this.goToNoteDetail(item)} />
                     )}>
                 </FlatList>
             </>
         )
     }
 
+    goToNoteDetail(item) {
+        NavigationServices.navigate('NoteDetail', {
+            category_id: item.category_id,
+            id_notes: item.id_notes,
+            name_category: item.name_category,
+            notes_note: item.notes_note,
+            notes_title: item.notes_title,
+        })
+    }
+
     async fetchData() {
-        this.setState({ isLoading: true })
-        await Axios.get(`${url}/notes`)
-            .then(res => {
-                this.setState({
-                    data: res.data,
-                    isLoading: false
-                })
-            })
-            .catch(err => console.warn(err))
+        this.props.getNotes()
     }
 }
 
@@ -101,3 +104,18 @@ const style = EStyleSheet.create({
         fontSize: '16rem'
     }
 })
+
+const mapStateToProps = state => {
+    return {
+        notes: state.notes
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getNotes: () => dispatch(getNotes()),
+        getNoteById: (id) => dispatch(getNoteById(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

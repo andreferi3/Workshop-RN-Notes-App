@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 
 // Styles
 import EStyleSheet from 'react-native-extended-stylesheet';
-import GlobalStyles from '../styles/GlobalStyles';
+import GlobalStyles from '../public/styles/GlobalStyles';
 
 // Utilites
 import moment from 'moment';
@@ -13,11 +13,18 @@ const NoteCard = ({
     dateCreated,
     noteDescription,
     categoryName,
-    noteTitle
+    noteTitle,
+    backgroundColor,
+    onPress
 }) => {
     return (
         <>
-            <TouchableOpacity style={[style.noteWrapper, GlobalStyles.mb2]}>
+            <TouchableOpacity 
+                onPress={onPress}
+                style={[
+                    {backgroundColor: backgroundColor},
+                    style.noteWrapper, 
+                    GlobalStyles.mb2]}>
                 <Text style={[style.noteDateCreated, GlobalStyles.mb2]}>{moment(dateCreated).format('D MMMM')}</Text>
                 <Text numberOfLines={1} style={style.noteTitle}>{noteTitle}</Text>
                 <Text style={style.noteCategory}>{categoryName}</Text>
@@ -30,7 +37,6 @@ const NoteCard = ({
 
 const style = EStyleSheet.create({
     noteWrapper: {
-        backgroundColor: 'rgba(177,219,247,1)',
         padding: '11.5rem',
         shadowColor: "#000",
         shadowOffset: {

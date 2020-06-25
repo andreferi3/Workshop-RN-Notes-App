@@ -3,17 +3,13 @@ import { createStackNavigator } from "react-navigation-stack";
 
 // Screen
 import Home from '../screen/Home';
-import Settings from '../screen/Settings';
+import NoteDetail from '../screen/NoteDetail';
 import SignIn from "../screen/SignIn";
 import AuthLoading from "../screen/AuthLoading";
 
 const User = createStackNavigator({
-    Home: {
-        screen: Home
-    },
-    Setting: {
-        screen: Settings
-    }
+    Home,
+    NoteDetail
 }, {
     headerMode: 'none'
 })
