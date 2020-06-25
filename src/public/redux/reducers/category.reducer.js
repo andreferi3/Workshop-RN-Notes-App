@@ -1,22 +1,33 @@
-// * Variable
-import { GET_CATEGORIES_CONSTANT, GET_SINGLE_CATEGORY_CONSTANT, POST_CATEGORY_CONSTANT, UPDATE_CATEGORY_CONSTANT, DELETE_SINGLE_CATEGORY_CONSTANT } from '../../constants/GlobalConstant';
-
 const initialState = {
-    data: [],
-    isError: true,
-    isLoading: true
+    isError: false,
+    isLoading: false,
+    data: []
 }
 
 export default category = (state = initialState, action) => {
     switch(action.type) {
-        case GET_CATEGORIES_CONSTANT:
+        case 'GET_CATEGORIES_PENDING':
             return {
                 ...state,
-                isError: false,
+                isLoading: true
+            }
+
+        case 'GET_CATEGORIES_REJECTED':
+            return {
+                ...state,
                 isLoading: false,
-                data: action.payload.data.data
+                isError: true
+            }
+        case 'GET_CATEGORIES_FULFILLED':
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+                data: action.payload.data
             }
         default:
-            return state;
+            return {
+                ...state
+            }
     }
 }

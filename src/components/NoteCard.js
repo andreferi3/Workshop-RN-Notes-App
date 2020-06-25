@@ -15,13 +15,16 @@ const NoteCard = ({
     categoryName,
     noteTitle,
     backgroundColor,
-    onCardPress
+    onPress
 }) => {
     return (
         <>
             <TouchableOpacity 
-                onPress={onCardPress}
-                style={[style.noteWrapper, GlobalStyles.mb2, { backgroundColor }]}>
+                onPress={onPress}
+                style={[
+                    {backgroundColor: backgroundColor},
+                    style.noteWrapper, 
+                    GlobalStyles.mb2]}>
                 <Text style={[style.noteDateCreated, GlobalStyles.mb2]}>{moment(dateCreated).format('D MMMM')}</Text>
                 <Text numberOfLines={1} style={style.noteTitle}>{noteTitle}</Text>
                 <Text style={style.noteCategory}>{categoryName}</Text>

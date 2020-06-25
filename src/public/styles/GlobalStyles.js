@@ -35,6 +35,33 @@ const GlobalStyles = EStyleSheet.create({
     mt2: {
         marginTop: '14rem'
     },
+<<<<<<< HEAD
+=======
+    mt3: {
+        marginTop: '20.5rem'
+    },
+    mt4: {
+        marginTop: '27.5rem'
+    },
+    mt5: {
+        marginTop: '34rem'
+    },
+    mr1: {
+        marginRight: '4rem'
+    },
+    mr2: {
+        marginRight: '8rem'
+    },
+    mr3: {
+        marginRight: '11.5rem'
+    },
+    mr4: {
+        marginRight: '15.5rem'
+    },
+    mr5: {
+        marginRight: '19.5rem'
+    },
+>>>>>>> 53751367976fc2df72c40dc47de9407f62e0d9d3
     mb1: {
         marginBottom: '7rem'
     },

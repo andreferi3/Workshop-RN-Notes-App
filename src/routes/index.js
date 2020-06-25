@@ -2,6 +2,7 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
+<<<<<<< HEAD
 // Auth Screen
 import SignIn from "../screen/SignIn";
 import AuthLoading from "../screen/AuthLoading";
@@ -17,6 +18,19 @@ const Main = createStackNavigator({
 }, {
     headerMode: 'none',
     initialRouteName: 'Home'
+=======
+// Screen
+import Home from '../screen/Home';
+import NoteDetail from '../screen/NoteDetail';
+import SignIn from "../screen/SignIn";
+import AuthLoading from "../screen/AuthLoading";
+
+const User = createStackNavigator({
+    Home,
+    NoteDetail
+}, {
+    headerMode: 'none'
+>>>>>>> 53751367976fc2df72c40dc47de9407f62e0d9d3
 })
 
 const Auth = createStackNavigator({
